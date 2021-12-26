@@ -10,9 +10,9 @@ Mobile app where people can search for League of Legends champs and read about t
 ## To be Built With
 - React Native
 - Riot API
-- API that checks for best runes for a champ
 - More to be added...
 
 
 ## Designs
-When designs start they will be added here. The designs will be on Figma or AdobeXD. Design inspiration will also be added here which will be a Pinterest collection
+When designs start they will be added here. The designs will be on Figma or AdobeXD.
+- [Inspiration](https://pin.it/5TrqAlA)

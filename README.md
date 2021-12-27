@@ -10,7 +10,8 @@ Mobile app where people can search for League of Legends champs and read about t
 ## To be Built With
 - React Native
 - Riot API
-- More to be added...
+- NativeBase (UI Components)
+- Champion.gg for runes (not sure yet)
 
 
 ## Designs

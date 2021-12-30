@@ -6,7 +6,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>Hello world!</Text>
-      <Test name='vexleet' />
+      <Test name='test push' />
       <StatusBar style='auto' />
     </View>
   );

@@ -15,6 +15,5 @@ Mobile app where people can search for League of Legends champs and read about t
 
 
 ## Designs
-When designs start they will be added here. The designs will be on Figma or AdobeXD.
-- [Designs](https://xd.adobe.com/view/04081f47-696e-4e97-82ae-20a56cc80f11-515b/?hints=off)
+- [Designs](https://xd.adobe.com/view/04081f47-696e-4e97-82ae-20a56cc80f11-515b/)
 - [Inspiration](https://pin.it/5TrqAlA)

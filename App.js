@@ -1,13 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Test from './components/Test';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
+import ChampionCardList from './components/ChampionCardList';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Hello world!</Text>
-      <Test name='test push' />
-      <StatusBar style='auto' />
+      <Text style={styles.title}>Learn about your Champion</Text>
+
+      <TextInput style={styles.searchInput} placeholder='Search for a champion' />
+
+      <ChampionCardList />
     </View>
   );
 }
@@ -15,8 +17,21 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#121212',
+    paddingVertical: 25,
+    paddingHorizontal: 30,
+  },
+  title: {
+    fontSize: 42,
+    color: '#fff',
+  },
+  searchInput: {
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    borderStyle: 'solid',
+    borderColor: '#707070',
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingLeft: 10,
   },
 });

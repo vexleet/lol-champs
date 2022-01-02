@@ -1,40 +1,9 @@
-import { StyleSheet, ScrollView, View } from 'react-native';
+import { StyleSheet, ScrollView, View, Text } from 'react-native';
 import ChampionCard from './ChampionCard';
+import PropTypes from 'prop-types';
 
-const ChampionCardList = () => {
-  const champions = [
-    {
-      image: require('../assets/images/Thresh_Render.png'),
-      name: 'Thresh',
-      title: 'the Chain Warden',
-    },
-    {
-      image: require('../assets/images/Jhin_Render.png'),
-      name: 'Jhin',
-      title: 'the Virtuoso',
-    },
-    {
-      image: require('../assets/images/Kassadin_Render.png'),
-      name: 'Kassadin',
-      title: 'the Void Walker',
-    },
-    {
-      image: require('../assets/images/Yasuo_Render.png'),
-      name: 'Yasuo',
-      title: 'the Unforgiven',
-    },
-    {
-      image: require('../assets/images/Evelynn_Render.png'),
-      name: 'Evelynn',
-      title: "the Agony's Embrace",
-    },
-    {
-      image: require('../assets/images/Ornn_Render.png'),
-      name: 'Ornn',
-      title: 'the Fire below the Mountain',
-    },
-  ];
-
+const ChampionCardList = (props) => {
+  const champions = props.champions;
   const cardList = [];
 
   for (let i = 0; i < champions.length; i++) {
@@ -44,13 +13,20 @@ const ChampionCardList = () => {
         name={champions[i].name}
         title={champions[i].title}
         image={champions[i].image}
+        key={i}
       />,
     );
   }
 
   return (
     <ScrollView style={styles.scrollViewContainer}>
-      <View style={styles.championCardListContainer}>{cardList}</View>
+      {cardList.length ? (
+        <View style={styles.championCardListContainer}>{cardList}</View>
+      ) : (
+        <Text style={styles.noChampionsText}>
+          We are sorry, no champions matches your critieria.
+        </Text>
+      )}
     </ScrollView>
   );
 };
@@ -60,7 +36,7 @@ const styles = StyleSheet.create({
     marginHorizontal: -15,
   },
   championCardListContainer: {
-    marginTop: 35,
+    marginTop: 20,
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -69,6 +45,22 @@ const styles = StyleSheet.create({
   championCard: {
     marginBottom: 30,
   },
+  noChampionsText: {
+    color: '#fff',
+    fontSize: 35,
+    textAlign: 'center',
+    marginTop: 80,
+  },
 });
+
+ChampionCardList.propTypes = {
+  champions: PropTypes.arrayOf(
+    PropTypes.exact({
+      image: PropTypes.string,
+      name: PropTypes.string,
+      title: PropTypes.string,
+    }),
+  ),
+};
 
 export default ChampionCardList;

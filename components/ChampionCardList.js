@@ -1,6 +1,7 @@
 import { StyleSheet, ScrollView, View, Text } from 'react-native';
 import ChampionCard from './ChampionCard';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-native';
 
 const ChampionCardList = (props) => {
   const champions = props.champions;
@@ -8,13 +9,15 @@ const ChampionCardList = (props) => {
 
   for (let i = 0; i < champions.length; i++) {
     cardList.push(
-      <ChampionCard
-        style={styles.championCard}
-        name={champions[i].name}
-        title={champions[i].title}
-        image={champions[i].image}
-        key={i}
-      />,
+      <Link to={`/champion/${champions[i].name}`}>
+        <ChampionCard
+          style={styles.championCard}
+          name={champions[i].name}
+          title={champions[i].title}
+          image={champions[i].image}
+          key={i}
+        />
+      </Link>,
     );
   }
 

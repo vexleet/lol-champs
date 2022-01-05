@@ -1,18 +1,11 @@
 import { StyleSheet, ScrollView, Text, Image, View } from 'react-native';
-import Chip from '../components/Chip';
-import SpellCard from '../components/SpellCard';
+import ChampionSpells from '../components/ChampionSpells';
+import ChampionRoles from '../components/ChampionRoles';
+import ChampionSkins from '../components/ChampionSkins';
 
 const ChampDetails = () => {
   const roles = ['Support', 'Fighter'];
   const spells = [
-    {
-      name: 'Damnation',
-      description:
-        'Thresh can harvest the souls of enemies that die near him, permanently granting him Armor and Ability Power.',
-      image: {
-        full: 'Thresh_Passive.png',
-      },
-    },
     {
       name: 'Death Sentence',
       description:
@@ -45,24 +38,89 @@ const ChampDetails = () => {
       },
     },
   ];
+  const passive = {
+    name: 'Damnation',
+    description:
+      'Thresh can harvest the souls of enemies that die near him, permanently granting him Armor and Ability Power.',
+    image: {
+      full: 'Thresh_Passive.png',
+    },
+  };
+  const skins = [
+    {
+      id: '412000',
+      num: 0,
+      name: 'default',
+    },
+    {
+      id: '412001',
+      num: 1,
+      name: 'Deep Terror Thresh',
+    },
+    {
+      id: '412002',
+      num: 2,
+      name: 'Championship Thresh',
+    },
+    {
+      id: '412003',
+      num: 3,
+      name: 'Blood Moon Thresh',
+    },
+    {
+      id: '412004',
+      num: 4,
+      name: 'SSW Thresh',
+    },
+    {
+      id: '412005',
+      num: 5,
+      name: 'Dark Star Thresh',
+    },
+    {
+      id: '412006',
+      num: 6,
+      name: 'High Noon Thresh',
+    },
+    {
+      id: '412013',
+      num: 13,
+      name: 'Pulsefire Thresh',
+    },
+    {
+      id: '412014',
+      num: 14,
+      name: 'Pulsefire Thresh Prestige Edition',
+    },
+    {
+      id: '412015',
+      num: 15,
+      name: 'FPX Thresh',
+    },
+    {
+      id: '412017',
+      num: 17,
+      name: 'Spirit Blossom Thresh',
+    },
+    {
+      id: '412027',
+      num: 27,
+      name: 'Unbound Thresh',
+    },
+    {
+      id: '412028',
+      num: 28,
+      name: 'Steel Dragon Thresh',
+    },
+  ];
 
-  const rolesComponents = [];
-  const spellsComponents = [];
+  const getSpells = () => {
+    return [passive, ...spells];
+  };
 
-  for (let i = 0; i < roles.length; i++) {
-    rolesComponents.push(<Chip style={styles.roleChip}>{roles[i]}</Chip>);
-  }
-
-  for (let i = 0; i < spells.length; i++) {
-    spellsComponents.push(
-      <SpellCard
-        styles={{ marginBottom: 10 }}
-        spellImage={spells[i].image.full}
-        spellDesc={spells[i].description}
-        spellName={spells[i].name}
-      />,
-    );
-  }
+  const getSkins = () => {
+    return skins.slice(1, -1);
+  };
 
   return (
     <ScrollView>
@@ -78,7 +136,7 @@ const ChampDetails = () => {
           <Text style={[styles.whiteText, styles.championName]}>Thresh</Text>
           <Text style={[styles.whiteText, styles.championTitle]}>the Chain Warden</Text>
 
-          <View style={styles.rolesContainer}>{rolesComponents}</View>
+          <ChampionRoles roles={roles} />
 
           <Text style={[styles.whiteText, styles.champDetailsHeading]}>Lore</Text>
           <Text style={[styles.whiteText, styles.loreText]}>
@@ -90,11 +148,15 @@ const ChampDetails = () => {
             for all eternity.
           </Text>
 
-          <Text style={[styles.whiteText, styles.champDetailsHeading, { marginBottom: 15 }]}>
-            Spells
-          </Text>
+          <View>
+            <Text style={[styles.whiteText, styles.champDetailsHeading]}>Spells</Text>
 
-          {spellsComponents}
+            <ChampionSpells spells={getSpells()} />
+
+            <Text style={[styles.whiteText, styles.champDetailsHeading]}>Skins</Text>
+
+            <ChampionSkins skins={getSkins()} />
+          </View>
         </View>
       </View>
     </ScrollView>
@@ -108,8 +170,9 @@ const styles = StyleSheet.create({
   },
   championDetailsContainer: {
     position: 'relative',
-    top: -150,
-    height: '100%',
+    marginTop: -150,
+    backgroundColor: '#121212',
+    paddingBottom: 25,
   },
   championDetailsWrapper: {
     padding: 20,
@@ -132,18 +195,10 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
   },
-  rolesContainer: {
-    flexDirection: 'row',
-    flex: 1,
-    marginTop: 5,
-    marginBottom: 20,
-  },
-  roleChip: {
-    marginRight: 5,
-  },
   champDetailsHeading: {
     fontSize: 35,
     fontWeight: 'bold',
+    marginBottom: 15,
   },
   loreText: {
     fontSize: 18,

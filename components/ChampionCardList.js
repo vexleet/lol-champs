@@ -2,24 +2,34 @@ import { StyleSheet, ScrollView, View, Text } from 'react-native';
 import ChampionCard from './ChampionCard';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-native';
+import { fetchAllChampions } from '../services/champions';
+import { useEffect, useState } from 'react';
 
 const ChampionCardList = (props) => {
-  const champions = props.champions;
-  const cardList = [];
+  // const [champions, setChampions] = useState([]);
+  const [cardList, setCardList] = useState([]);
 
-  for (let i = 0; i < champions.length; i++) {
-    cardList.push(
-      <Link to={`/champion/${champions[i].name}`}>
-        <ChampionCard
-          style={styles.championCard}
-          name={champions[i].name}
-          title={champions[i].title}
-          image={champions[i].image}
-          key={i}
-        />
-      </Link>,
-    );
-  }
+  useEffect(async () => {
+    console.log(true);
+    const data = await fetchAllChampions();
+    const dataKeys = Object.keys(data);
+    const cardListTest = [];
+
+    for (let i = 0; i < dataKeys.length; i++) {
+      const currentChamp = data[dataKeys[i]];
+      cardListTest.push(
+        <Link to={`/champion/${currentChamp.name}`} key={currentChamp.name}>
+          <ChampionCard
+            style={styles.championCard}
+            name={currentChamp.name}
+            title={currentChamp.title}
+          />
+        </Link>,
+      );
+    }
+
+    setCardList(cardListTest);
+  }, []);
 
   return (
     <ScrollView style={styles.scrollViewContainer}>
@@ -27,7 +37,7 @@ const ChampionCardList = (props) => {
         <View style={styles.championCardListContainer}>{cardList}</View>
       ) : (
         <Text style={styles.noChampionsText}>
-          We are sorry, no champions matches your critieria.
+          We are sorry, no champions matches your criteria.
         </Text>
       )}
     </ScrollView>
@@ -59,7 +69,6 @@ const styles = StyleSheet.create({
 ChampionCardList.propTypes = {
   champions: PropTypes.arrayOf(
     PropTypes.exact({
-      image: PropTypes.string,
       name: PropTypes.string,
       title: PropTypes.string,
     }),

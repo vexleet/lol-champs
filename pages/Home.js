@@ -7,32 +7,26 @@ import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 const Home = () => {
   const champions = [
     {
-      image: require('../assets/images/Thresh_Render.png'),
       name: 'Thresh',
       title: 'the Chain Warden',
     },
     {
-      image: require('../assets/images/Jhin_Render.png'),
       name: 'Jhin',
       title: 'the Virtuoso',
     },
     {
-      image: require('../assets/images/Kassadin_Render.png'),
       name: 'Kassadin',
       title: 'the Void Walker',
     },
     {
-      image: require('../assets/images/Yasuo_Render.png'),
       name: 'Yasuo',
       title: 'the Unforgiven',
     },
     {
-      image: require('../assets/images/Evelynn_Render.png'),
       name: 'Evelynn',
       title: "the Agony's Embrace",
     },
     {
-      image: require('../assets/images/Ornn_Render.png'),
       name: 'Ornn',
       title: 'the Fire below the Mountain',
     },
@@ -63,7 +57,7 @@ const Home = () => {
       <Text style={styles.title}>Learn about your Champion</Text>
 
       <View style={styles.searchContainer}>
-        <FontAwesomeIcon style={styles.searchIcon} icon={faSearch} color={'#6D6363'} size='22' />
+        <FontAwesomeIcon style={styles.searchIcon} icon={faSearch} color={'#6D6363'} size={22} />
 
         <TextInput
           style={styles.searchInput}

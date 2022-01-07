@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
 import PropTypes from 'prop-types';
+import { championRenders } from '../data/champion-renders';
 
 const ChampionCard = (props) => {
   return (
     <View style={[styles.championCardContainer, props.style]}>
-      <Image style={styles.championImage} source={props.image} />
+      <Image style={styles.championImage} source={championRenders[props.name]} />
       <Text style={styles.championName}>{props.name}</Text>
       <Text style={styles.championTitle}>{props.title}</Text>
     </View>
@@ -44,7 +45,6 @@ const styles = StyleSheet.create({
 });
 
 ChampionCard.propTypes = {
-  image: PropTypes.string,
   name: PropTypes.string,
   title: PropTypes.string,
   style: PropTypes.object,

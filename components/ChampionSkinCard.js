@@ -1,6 +1,7 @@
 import { StyleSheet, View, Text, Image } from 'react-native';
 import PropTypes from 'prop-types';
 
+//TODO: Use ImageBackground component
 const ChampionSkinCard = (props) => {
   return (
     <View style={[styles.skinCardContainer, props.style]}>

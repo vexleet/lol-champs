@@ -12,7 +12,7 @@ const ChampionCardList = (props) => {
     cardList.push(
       <Link to={`/champion/${currentChamp.name}`} key={currentChamp.name}>
         <ChampionCard
-          style={styles.championCard}
+          styles={styles.championCard}
           name={currentChamp.name}
           title={currentChamp.title}
           id={currentChamp.id}

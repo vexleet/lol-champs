@@ -27,9 +27,9 @@ ChampionSpells.propTypes = {
     PropTypes.shape({
       name: PropTypes.string,
       description: PropTypes.string,
-      image: {
+      image: PropTypes.shape({
         full: PropTypes.string,
-      },
+      }),
     }),
   ),
 };

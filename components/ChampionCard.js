@@ -4,7 +4,7 @@ import { championRenders } from '../data/champion-renders';
 
 const ChampionCard = (props) => {
   return (
-    <View style={[styles.championCardContainer, props.style]}>
+    <View style={[styles.championCardContainer, props.styles]}>
       <Image style={styles.championImage} source={championRenders[props.id]} />
       <View style={styles.championNameWrapper}>
         <Text style={styles.championName}>{props.name}</Text>
@@ -56,7 +56,7 @@ ChampionCard.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   title: PropTypes.string,
-  style: PropTypes.object,
+  styles: PropTypes.object,
 };
 
 export default ChampionCard;

@@ -25,7 +25,7 @@ ChampionSkins.propTypes = {
     PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
-      uri: PropTypes.number,
+      uri: PropTypes.string,
     }),
   ),
 };

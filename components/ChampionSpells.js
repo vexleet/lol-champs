@@ -4,7 +4,6 @@ import SpellCard from './SpellCard';
 
 const ChampionSpells = (props) => {
   const spells = props.spells;
-  console.log(spells);
   const spellsComponents = [];
 
   for (let i = 0; i < spells.length; i++) {

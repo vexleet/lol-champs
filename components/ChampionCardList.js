@@ -2,34 +2,24 @@ import { StyleSheet, ScrollView, View, Text } from 'react-native';
 import ChampionCard from './ChampionCard';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-native';
-import { fetchAllChampions } from '../services/champions';
-import { useEffect, useState } from 'react';
 
 const ChampionCardList = (props) => {
-  // const [champions, setChampions] = useState([]);
-  const [cardList, setCardList] = useState([]);
+  const champions = props.champions;
+  const cardList = [];
 
-  useEffect(async () => {
-    console.log(true);
-    const data = await fetchAllChampions();
-    const dataKeys = Object.keys(data);
-    const cardListTest = [];
-
-    for (let i = 0; i < dataKeys.length; i++) {
-      const currentChamp = data[dataKeys[i]];
-      cardListTest.push(
-        <Link to={`/champion/${currentChamp.name}`} key={currentChamp.name}>
-          <ChampionCard
-            style={styles.championCard}
-            name={currentChamp.name}
-            title={currentChamp.title}
-          />
-        </Link>,
-      );
-    }
-
-    setCardList(cardListTest);
-  }, []);
+  for (let i = 0; i < champions.length; i++) {
+    const currentChamp = champions[i];
+    cardList.push(
+      <Link to={`/champion/${currentChamp.name}`} key={currentChamp.name}>
+        <ChampionCard
+          style={styles.championCard}
+          name={currentChamp.name}
+          title={currentChamp.title}
+          id={currentChamp.id}
+        />
+      </Link>,
+    );
+  }
 
   return (
     <ScrollView style={styles.scrollViewContainer}>
@@ -69,6 +59,7 @@ const styles = StyleSheet.create({
 ChampionCardList.propTypes = {
   champions: PropTypes.arrayOf(
     PropTypes.exact({
+      id: PropTypes.string,
       name: PropTypes.string,
       title: PropTypes.string,
     }),

@@ -1,38 +1,44 @@
-import { StyleSheet, Text, View, TextInput, TouchableWithoutFeedback } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableWithoutFeedback,
+  ActivityIndicator,
+} from 'react-native';
 import ChampionCardList from '../components/ChampionCardList';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { fetchAllChampions } from '../services/champions';
 
 const Home = () => {
-  const champions = [
-    {
-      name: 'Thresh',
-      title: 'the Chain Warden',
-    },
-    {
-      name: 'Jhin',
-      title: 'the Virtuoso',
-    },
-    {
-      name: 'Kassadin',
-      title: 'the Void Walker',
-    },
-    {
-      name: 'Yasuo',
-      title: 'the Unforgiven',
-    },
-    {
-      name: 'Evelynn',
-      title: "the Agony's Embrace",
-    },
-    {
-      name: 'Ornn',
-      title: 'the Fire below the Mountain',
-    },
-  ];
+  const [champions, setChampions] = useState([]);
   const [searchText, onChangeSearchText] = useState('');
   const [filteredChampions, setFilteredChampions] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await fetchAllChampions();
+      const dataKeys = Object.keys(data);
+      const cardListTest = [];
+
+      for (let i = 0; i < dataKeys.length; i++) {
+        const currentChamp = data[dataKeys[i]];
+        cardListTest.push({
+          id: currentChamp.id,
+          name: currentChamp.name,
+          title: currentChamp.title,
+        });
+      }
+
+      setChampions(cardListTest);
+      setIsLoading(false);
+    }
+
+    fetchData();
+  }, []);
 
   const onSearch = () => {
     const filteredChampionsCopy = [];
@@ -69,16 +75,20 @@ const Home = () => {
 
         {searchText !== '' && (
           <TouchableWithoutFeedback onPress={onClear}>
-            <FontAwesomeIcon style={styles.closeIcon} icon={faTimes} color={'#6D6363'} size='22' />
+            <FontAwesomeIcon style={styles.closeIcon} icon={faTimes} color={'#6D6363'} size={22} />
           </TouchableWithoutFeedback>
         )}
       </View>
 
-      <ChampionCardList
-        champions={
-          searchText === '' && filteredChampions.length === 0 ? champions : filteredChampions
-        }
-      />
+      {isLoading ? (
+        <ActivityIndicator style={{ flex: 1 }} size='large' color='#fff' />
+      ) : (
+        <ChampionCardList
+          champions={
+            searchText === '' && filteredChampions.length === 0 ? champions : filteredChampions
+          }
+        />
+      )}
     </View>
   );
 };

@@ -10,7 +10,7 @@ const ChampionSkins = (props) => {
       <ChampionSkinCard
         style={{ marginRight: 10 }}
         name={props.skins[i].name}
-        image={require('../assets/images/Thresh_1.png')}
+        image={props.skins[i].uri}
         key={props.skins[i].id}
       />,
     );
@@ -25,7 +25,7 @@ ChampionSkins.propTypes = {
     PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
-      num: PropTypes.number,
+      uri: PropTypes.number,
     }),
   ),
 };

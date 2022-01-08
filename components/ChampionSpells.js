@@ -13,6 +13,7 @@ const ChampionSpells = (props) => {
         spellImage={spells[i].image.full}
         spellDesc={spells[i].description}
         spellName={spells[i].name}
+        isPassive={i === 0}
         key={spells[i].name}
       />,
     );

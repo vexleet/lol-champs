@@ -4,7 +4,14 @@ import PropTypes from 'prop-types';
 const SpellCard = (props) => {
   return (
     <View style={[styles.spellCardContainer, props.styles]}>
-      <Image style={styles.spellImage} source={require('../assets/images/ThreshQ.png')} />
+      <Image
+        style={styles.spellImage}
+        source={{
+          uri: `https://ddragon.leagueoflegends.com/cdn/12.1.1/img/${
+            props.isPassive ? 'passive' : 'spell'
+          }/${props.spellImage}`,
+        }}
+      />
 
       <View style={styles.spellAboutContainer}>
         <Text style={styles.spellName}>{props.spellName}</Text>
@@ -25,6 +32,8 @@ const styles = StyleSheet.create({
   spellImage: {
     marginRight: 10,
     alignSelf: 'center',
+    width: 65,
+    height: 65,
   },
   spellAboutContainer: {
     flex: 1,
@@ -45,6 +54,7 @@ SpellCard.propTypes = {
   spellImage: PropTypes.string,
   spellName: PropTypes.string,
   spellDesc: PropTypes.string,
+  isPassive: PropTypes.bool,
 };
 
 export default SpellCard;

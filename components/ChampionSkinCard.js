@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const ChampionSkinCard = (props) => {
   return (
     <View style={[styles.skinCardContainer, props.style]}>
-      <Image style={styles.skinImage} source={props.image} />
+      <Image style={styles.skinImage} source={{ uri: props.image }} />
       <Text style={styles.skinName}>{props.name}</Text>
     </View>
   );
@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
+    borderRadius: 5,
   },
   skinName: {
     color: '#fff',

@@ -54,8 +54,8 @@ const Home = () => {
   };
 
   const onClear = () => {
-    onChangeSearchText('');
     setFilteredChampions([]);
+    onChangeSearchText('');
   };
 
   return (
@@ -84,9 +84,7 @@ const Home = () => {
         <ActivityIndicator style={{ flex: 1 }} size='large' color='#fff' />
       ) : (
         <ChampionCardList
-          champions={
-            searchText === '' && filteredChampions.length === 0 ? champions : filteredChampions
-          }
+          champions={filteredChampions.length === 0 ? champions : filteredChampions}
         />
       )}
     </View>
